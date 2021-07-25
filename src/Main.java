@@ -4,36 +4,34 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
-        String input = sc.next();
-        sc.nextLine();
-        int firstBlueCount = 1;
-        int firstRedCount = 1;
 
-        //블루먼저 전체 색칠
-        for (int i = 0; i < input.length(); i++) {
-            if(input.charAt(i) == 'R'){
-                while(true){
-                    i++;
-                    if(i == input.length() || input.charAt(i) != 'R'){
-                        break;
-                    }
-                }
-                firstBlueCount++;
-            }
+        int[] arr = new int[N];
+        int[] sum = new int[N];
+        int maxTotal = 0;
+
+        arr[0] = sc.nextInt();
+        sum[0] = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+            sum[i] = arr[i] + sum[i - 1];
         }
 
-        //래드먼저 전체 색칠
-        for (int i = 0; i < input.length(); i++) {
-            if(input.charAt(i) == 'B'){
-                while(true){
-                    i++;
-                    if(i == input.length() || input.charAt(i) != 'B'){
-                        break;
-                    }
-                }
-                firstRedCount++;
-            }
+        //벌 벌 꿀통 순
+        for (int i = 1; i < arr.length - 1; i++) {
+            maxTotal = Math.max(maxTotal, sum[arr.length - 1] - arr[0] - sum[i] + sum[arr.length - 1] - sum[i]);
         }
-        System.out.println(Math.min(firstRedCount, firstBlueCount));
+
+        //꿀통 벌 벌 순
+        for (int i = 1; i < arr.length - 1; i++) {
+            maxTotal = Math.max(maxTotal, sum[arr.length - 1] - arr[arr.length-1] - arr[i] + sum[i - 1]);
+        }
+
+        //벌 꿀통 벌 순
+        for (int i = 1; i < arr.length-1; i++) {
+            maxTotal = Math.max(maxTotal, sum[i] - arr[0] + sum[arr.length - 1] - arr[arr.length-1] - sum[i-1]);
+        }
+
+        System.out.print(maxTotal);
     }
 }
