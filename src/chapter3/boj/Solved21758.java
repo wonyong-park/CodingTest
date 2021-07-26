@@ -1,6 +1,8 @@
+package chapter3.boj;
+
 import java.util.Scanner;
 
-public class Main {
+public class Solved21758 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
@@ -27,13 +29,12 @@ public class Main {
         for (int i = 1; i < N-1; i++) {
             maxTotal = Math.max(maxTotal, sum[N-1] - arr[N-1] - arr[i] + sum[i-1]);
         }
-        
+
         //벌 꿀통 벌
         for (int i = 1; i < N-1; i++) {
             maxTotal = Math.max(maxTotal, sum[i] - arr[0] + sum[N-1] - sum[i-1] - arr[N-1]);
         }
 
         System.out.println(maxTotal);
-
     }
 }
