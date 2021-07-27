@@ -1,39 +1,27 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
+    public static void main(String[] args) throws IOException {
 
-        int[] arr = new int[N];
-        int[] sum = new int[N];
-        int maxTotal = 0;
+//        Scanner sc = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String arr[] = {"000", "001", "010", "011", "100", "101", "111", "111"};
+        String result = "";
 
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = sc.nextInt();
+//        String input = sc.nextLine();
+        String input = br.readLine();
+
+        for (int i = input.length()-1; i > 0; i--) {
+            result = arr[Integer.parseInt(input.charAt(i) + "")] + result;
         }
 
-        sum[0] = arr[0];
-        for (int i = 1; i < sum.length; i++) {
-            sum[i] = arr[i] + sum[i - 1];
-        }
+        int first = Integer.parseInt(arr[Integer.parseInt(input.charAt(0)+"")]);
 
-        //벌 벌 꿀통
-        for (int i = 1; i < N-1; i++) {
-            maxTotal = Math.max(maxTotal, sum[N - 1] - arr[0] - arr[i] + sum[N - 1] - sum[i]);
-        }
+        result = first + result;
 
-        //꿀통 벌 벌
-        for (int i = 1; i < N-1; i++) {
-            maxTotal = Math.max(maxTotal, sum[N-1] - arr[N-1] - arr[i] + sum[i-1]);
-        }
-        
-        //벌 꿀통 벌
-        for (int i = 1; i < N-1; i++) {
-            maxTotal = Math.max(maxTotal, sum[i] - arr[0] + sum[N-1] - sum[i-1] - arr[N-1]);
-        }
-
-        System.out.println(maxTotal);
-
+        System.out.println(result);
     }
 }
