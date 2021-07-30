@@ -1,6 +1,8 @@
+package chapter4.boj;
+
 import java.util.Scanner;
 
-public class Main {
+public class Sovled21918 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -48,4 +50,5 @@ public class Main {
             System.out.print(result + " ");
         }
     }
+
 }
