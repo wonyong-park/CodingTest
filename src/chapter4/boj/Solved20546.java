@@ -1,6 +1,8 @@
+package chapter4.boj;
+
 import java.util.Scanner;
 
-public class Main {
+public class Solved20546 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int money = sc.nextInt();
