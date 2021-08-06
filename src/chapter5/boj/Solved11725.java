@@ -1,3 +1,5 @@
+package chapter5.boj;
+
 import java.util.*;
 
 public class Solved11725 {
