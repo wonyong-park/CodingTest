@@ -63,10 +63,6 @@ public class 개선된다익스트라알고리즘 {
         pq.offer(new Nodee(start, 0));
         d[start] = 0;
 
-        for (int i = 1; i <= n; i++) {
-            System.out.print(d[i] + " ");
-        }
-
         while (!pq.isEmpty()) {
             //가장 최단 거리가 짧은 노드에 대한 정보 꺼내기
             Nodee nodee = pq.poll();
@@ -84,11 +80,6 @@ public class 개선된다익스트라알고리즘 {
                     d[graph.get(now).get(i).getIndex()] = cost;
                     pq.offer(new Nodee(graph.get(now).get(i).getIndex(), cost));
                 }
-            }
-
-            System.out.println();
-            for (int i = 1; i <= n; i++) {
-                System.out.print(d[i] + " ");
             }
         }
     }
