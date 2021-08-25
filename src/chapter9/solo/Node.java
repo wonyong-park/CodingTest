@@ -1,6 +1,6 @@
 package chapter9.solo;
 
-public class Node {
+public class Node implements Comparable<Node> {
     private int index;
     private int distance;
 
@@ -15,5 +15,13 @@ public class Node {
 
     public int getDistance() {
         return distance;
+    }
+
+    @Override
+    public int compareTo(Node o) {
+        if (this.distance < o.distance) {
+            return -1;
+        }
+        return 0;
     }
 }
