@@ -19,31 +19,30 @@ public class 특정거리의도시찾기 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int M = sc.nextInt();
-        int K = sc.nextInt();
-        int X = sc.nextInt();
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int k = sc.nextInt();
+        int x = sc.nextInt();
 
-        distance = new int[N + 1];
-        Arrays.fill(distance, -1);
-        distance[X] = 0;
-
-        for (int i = 0; i <= N; i++) {
+        for (int i = 0; i <= n; i++) {
             graph.add(new ArrayList<>());
         }
 
-        for (int i = 0; i < M; i++) {
+        distance = new int[n + 1];
+        Arrays.fill(distance, -1);
+        distance[x] = 0;
+
+        for (int i = 0; i < m; i++) {
             int a = sc.nextInt();
             int b = sc.nextInt();
             graph.get(a).add(b);
         }
 
         Queue<Integer> q = new LinkedList<>();
-        q.offer(X);
+        q.offer(x);
 
         while (!q.isEmpty()) {
             int now = q.poll();
-
             for (int i = 0; i < graph.get(now).size(); i++) {
                 if (distance[graph.get(now).get(i)] == -1) {
                     distance[graph.get(now).get(i)] = distance[now] + 1;
@@ -52,17 +51,19 @@ public class 특정거리의도시찾기 {
             }
         }
 
-        boolean isExist = false;
-        for (int i = 1; i < N+1; i++) {
-            if (distance[i] == K) {
+        boolean isCheck = false;
+        for (int i = 1; i <= n; i++) {
+            if (distance[i] == k) {
                 System.out.println(i);
-                isExist = true;
+                isCheck = true;
             }
         }
 
-        if (!isExist) {
+        if (!isCheck) {
             System.out.println("-1");
         }
 
     }
+
+
 }
