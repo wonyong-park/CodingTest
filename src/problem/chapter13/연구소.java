@@ -8,14 +8,12 @@ public class 연구소 {
      * N x M의 크기
      */
 
-    public static int n, m =0;
-    public static int result = -1;
+    public static int n,m, result = 0;
+    public static int[][] arr = new int[8][8];
+    public static int[][] temp = new int[8][8];
 
-    public static int arr[][] = new int[8][8];
-    public static int temp[][] = new int[8][8];
-
-    public static int[] dx = {-1, 0, 1, 0};
-    public static int[] dy = {0, 1, 0, -1};
+    public static int[] dx = {-1, 1, 0, 0};
+    public static int[] dy = {0, 0, -1, 1};
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -32,10 +30,9 @@ public class 연구소 {
         System.out.println(result);
     }
 
-    public static void dfs(int count) {
+    private static void dfs(int count) {
 
         if (count == 3) {
-            //원본 배열 복사
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < m; j++) {
                     temp[i][j] = arr[i][j];
@@ -50,12 +47,12 @@ public class 연구소 {
                     }
                 }
             }
-            result = Math.max(result, getResult());
+
+            //result 갱신
+            result = Math.max(result, getCount());
             return;
         }
 
-
-        //빈 공간에 벽을 설치
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (arr[i][j] == 0) {
@@ -69,13 +66,12 @@ public class 연구소 {
         }
     }
 
-    private static int getResult() {
+    private static int getCount() {
         int count = 0;
+
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (temp[i][j] == 0) {
-                    count += 1;
-                }
+                if(temp[i][j] == 0) count++;
             }
         }
 
@@ -90,9 +86,10 @@ public class 연구소 {
             if (nx >= 0 && nx < n && ny >= 0 && ny < m) {
                 if (temp[nx][ny] == 0) {
                     temp[nx][ny] = 2;
-                    virus(nx,ny);
+                    virus(nx, ny);
                 }
             }
         }
     }
+
 }
